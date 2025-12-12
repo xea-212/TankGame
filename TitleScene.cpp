@@ -1,35 +1,36 @@
-#include "TestScene.h"
+#include "TitleScene.h"
 #include "Ground.h"
 #include "Tank.h"
 #include "Enemy.h"
 #include "UI.h"
+#include "Engine/SceneManager.h"
 
 //コンストラクタ
-TestScene::TestScene(GameObject * parent)
-	: GameObject(parent, "TestScene")
+TitleScene::TitleScene(GameObject * parent)
+	: GameObject(parent, "TitleScene")
 {
 }
 
 //初期化
-void TestScene::Initialize()
+void TitleScene::Initialize()
 {
-	Instantiate<Ground>(this);
-	Instantiate<Tank>(this);
+	//Instantiate<Ground>(this);
+	//Instantiate<Tank>(this);
 	Instantiate<Enemy>(this);
-	Instantiate<UI>(this);
+	//Instantiate<UI>(this);
 }
 
 //更新
-void TestScene::Update()
+void TitleScene::Update()
 {
 }
 
 //描画
-void TestScene::Draw()
+void TitleScene::Draw()
 {
 }
 
 //開放
-void TestScene::Release()
+void TitleScene::Release()
 {
 }

@@ -110,13 +110,13 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
+      <Filter>TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -196,13 +196,13 @@
     <ClInclude Include="Bullet.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.h">
+      <Filter>TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
       <Filter>TitleScene</Filter>
     </ClInclude>
   </ItemGroup>

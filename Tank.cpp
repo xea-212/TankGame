@@ -48,6 +48,10 @@ void Tank::Update()
     {
         vPos -= vMove;
     }
+    if (Input::IsKey(DIK_W))
+    {
+        transform_.position_.y += 10.0f;
+    }
     XMStoreFloat3(&transform_.position_, vPos);
     
 
@@ -66,7 +70,7 @@ void Tank::Update()
     if (data.hit)
     {
         //‚»‚Ì•ªˆÊ’u‚ð‰º‚°‚é
-        transform_.position_.y = -data.dist;
+        //transform_.position_.y = -data.dist;
     }
 
     XMVECTOR vCam = { 0,2.0f,-1.0f,0 };

@@ -16,7 +16,7 @@ Ground::~Ground()
 void Ground::Initialize()
 {
     //モデルデータのロード
-    hModel_ = Model::Load("Models/Ground.fbx");
+    hModel_ = Model::Load("Models/Stage00.fbx");
     assert(hModel_ >= 0);
 
     SphereCollider* collision = new SphereCollider(XMFLOAT3(0, 0, 0), 0.3f);

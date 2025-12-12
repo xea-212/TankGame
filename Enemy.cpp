@@ -16,7 +16,7 @@ Enemy::~Enemy()
 void Enemy::Initialize()
 {
 	//モデルデータのロード
-	hModel_ = Model::Load("Models/Nyoro.fbx");
+	hModel_ = Model::Load("Models/TITLE00.fbx");
 	assert(hModel_ >= 0);
 	//初期位置を設定
 	Model::SetAnimFrame(hModel_, 100, 160, 10.0f);

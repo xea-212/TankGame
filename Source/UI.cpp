@@ -1,6 +1,6 @@
 #include "UI.h"
-#include "Engine/Image.h"
-#include "Engine/Input.h"
+#include "../Engine/Image.h"
+#include "../Engine/Input.h"
 
 UI::UI(GameObject* parent)
 	:GameObject(parent, "UI"), hPict_(-1)

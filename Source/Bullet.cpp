@@ -1,7 +1,7 @@
 #include "Bullet.h"
-#include "Engine/Model.h"
-#include "Engine/SphereCollider.h"
-#include "Engine/Input.h"
+#include "../Engine/Model.h"
+#include "../Engine/SphereCollider.h"
+#include "../Engine/Input.h"
 
 
 

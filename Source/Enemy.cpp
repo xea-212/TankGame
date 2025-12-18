@@ -1,8 +1,8 @@
 #include "Enemy.h"
-#include "Engine/Model.h"
-#include "Engine/Input.h"
-#include "Engine/SphereCollider.h"
-#include "Engine/Camera.h"
+#include "../Engine/Model.h"
+#include "../Engine/Input.h"
+#include "../Engine/SphereCollider.h"
+#include "../Engine/Camera.h"
 
 Enemy::Enemy(GameObject* parent)
 	:GameObject(parent, "Enemy"), hModel_(-1)

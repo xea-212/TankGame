@@ -1,7 +1,7 @@
 #include "Ground.h"
-#include "Engine/Model.h"
-#include "Engine/Input.h"
-#include "Engine/SphereCollider.h"
+#include "../Engine/Model.h"
+#include "../Engine/Input.h"
+#include "../Engine/SphereCollider.h"
 
 Ground::Ground(GameObject* parent)
     :GameObject(parent, "Ground"), hModel_(-1), life_(180)

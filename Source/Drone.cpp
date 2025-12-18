@@ -1,30 +1,33 @@
-#include "Tank.h"
-#include "Engine/Model.h"
-#include "Engine/Input.h"
-#include "Engine/SphereCollider.h"
+#include "Drone.h"
+#include "../Engine/Model.h"
+#include "../Engine/Input.h"
+#include "../Engine/SphereCollider.h"
 #include "Ground.h"
-#include "TankHead.h"
-#include "Engine/Camera.h"
+//#include "DroneHead.h"
+#include "../Engine/Camera.h"
 
-Tank::Tank(GameObject* parent)
-    :GameObject(parent, "Tank"), hModel_(-1), life_(180)
+Drone::Drone(GameObject* parent)
+    :GameObject(parent, "Drone"), hModel_(-1), life_(180)
+{
+	velocity = { 0.0f, 0.0f, 0.0f };
+	acceleration = { 0.0f, 0.0f, 0.0f };
+	attitude_angles = { 0.0f, 0.0f, 0.0f };
+}
+
+Drone::~Drone()
 {
 }
 
-Tank::~Tank()
-{
-}
-
-void Tank::Initialize()
+void Drone::Initialize()
 {
     //モデルデータのロード
-    hModel_ = Model::Load("Models/TankBody.fbx");
+    hModel_ = Model::Load("Models/Drone.fbx");
     assert(hModel_ >= 0);
 
-    Instantiate<TankHead>(this);
+   // Instantiate<DroneHead>(this);
 }
 
-void Tank::Update()
+void Drone::Update()
 {
  
     XMVECTOR vPos = XMLoadFloat3(&transform_.position_);
@@ -48,10 +51,11 @@ void Tank::Update()
     {
         vPos -= vMove;
     }
-    if (Input::IsKey(DIK_W))
-    {
-        transform_.position_.y += 10.0f;
-    }
+	if (Input::IsKey(DIK_W))
+	{
+		vPos += XMVectorSet(0, 0.1f, 0, 0);
+	}
+    
     XMStoreFloat3(&transform_.position_, vPos);
     
 
@@ -60,7 +64,7 @@ void Tank::Update()
 
     RayCastData data;
     data.start = transform_.position_;   //レイの発射位置
-    data.start.y = 0;
+    data.start.y = transform_.position_.y;
 
     data.dir = XMFLOAT3(0, -1, 0);       //レイの方向
     Model::RayCast(hGroundModel, &data); //レイを発射
@@ -70,10 +74,9 @@ void Tank::Update()
     if (data.hit)
     {
         //その分位置を下げる
-        //transform_.position_.y = -data.dist;
+        //transform_.position_.y = -
     }
-
-    XMVECTOR vCam = { 0,2.0f,-1.0f,0 };
+    XMVECTOR vCam = { -10,2.0f,-1.0f,0 };
     vCam = XMVector3TransformCoord(vCam, mRotate);
     //XMFLOAT3 camPos;
     //XMStoreFloat3(&camPos, vPos + vCam);
@@ -93,16 +96,16 @@ void Tank::Update()
     Camera::SetTarget(camTarget);
 }
 
-void Tank::Draw()
+void Drone::Draw()
 {
     Model::SetTransform(hModel_, transform_);
     Model::Draw(hModel_);
 }
 
-void Tank::Release()
+void Drone::Release()
 {
 }
 
-void Tank::GetPosition()
+void Drone::GetPosition()
 {
 }

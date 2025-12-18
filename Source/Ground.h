@@ -1,17 +1,17 @@
 #pragma once
-#include "Engine/GameObject.h"
+#include "../Engine/GameObject.h"
 
 //◆◆◆を管理するクラス
-class Tank : public GameObject
+class Ground : public GameObject
 {
     int hModel_;    //モデル番号
     int life_;      //寿命
 public:
     //コンストラクタ
-    Tank(GameObject* parent);
+    Ground(GameObject* parent);
 
     //デストラクタ
-    ~Tank();
+    ~Ground();
 
     //初期化
     void Initialize() override;
@@ -25,5 +25,5 @@ public:
     //開放
     void Release() override;
 
-    void GetPosition();
+    int GetModelHandle() { return hModel_; }
 };

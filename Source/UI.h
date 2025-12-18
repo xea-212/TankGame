@@ -1,17 +1,16 @@
 #pragma once
-#include "Engine/GameObject.h"
+#include "../Engine/GameObject.h"
 
 //◆◆◆を管理するクラス
-class Ground : public GameObject
+class UI : public GameObject
 {
-    int hModel_;    //モデル番号
-    int life_;      //寿命
+    int hPict_;    //モデル番号
 public:
     //コンストラクタ
-    Ground(GameObject* parent);
+    UI(GameObject* parent);
 
     //デストラクタ
-    ~Ground();
+    ~UI();
 
     //初期化
     void Initialize() override;
@@ -25,5 +24,5 @@ public:
     //開放
     void Release() override;
 
-    int GetModelHandle() { return hModel_; }
+    void GetPosition();
 };

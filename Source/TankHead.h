@@ -1,17 +1,13 @@
 #pragma once
-#include "Engine/GameObject.h"
+#include "../Engine/GameObject.h"
 
-//◆◆◆を管理するクラス
-class Enemy : public GameObject
+class TankHead :
+    public GameObject
 {
     int hModel_;    //モデル番号
 public:
-    //コンストラクタ
-    Enemy(GameObject* parent);
-
-    //デストラクタ
-    ~Enemy();
-
+    TankHead(GameObject* parent);
+    ~TankHead();
     //初期化
     void Initialize() override;
 
@@ -23,6 +19,5 @@ public:
 
     //開放
     void Release() override;
-
-    void GetPosition();
 };
+

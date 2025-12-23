@@ -18,6 +18,7 @@
 #include "Input.h"
 #include "Audio.h"
 #include "VFX.h"
+#include "Time.h"
 
 #pragma comment(lib,"Winmm.lib")
 
@@ -46,7 +47,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	int fpsLimit = GetPrivateProfileInt("GAME", "Fps", 60, ".\\setup.ini");				//FPS（画面更新速度）
 	int isDrawFps = GetPrivateProfileInt("DEBUG", "ViewFps", 0, ".\\setup.ini");		//キャプションに現在のFPSを表示するかどうか
 
-
+	Time::Init();
 
 
 	//ウィンドウを作成
@@ -117,7 +118,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				FPS++;						//画面更新回数をカウントする
 
 
-
+				//Timeの更新
+				Time::Update();
 
 				//入力（キーボード、マウス、コントローラー）情報を更新
 				Input::Update();

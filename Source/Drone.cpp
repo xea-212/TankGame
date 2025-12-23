@@ -2,6 +2,7 @@
 #include "../Engine/Model.h"
 #include "../Engine/Input.h"
 #include "../Engine/SphereCollider.h"
+#include "../Engine/Time.h"
 #include "Ground.h"
 //#include "DroneHead.h"
 #include "../Engine/Camera.h"
@@ -9,6 +10,8 @@
 Drone::Drone(GameObject* parent)
     :GameObject(parent, "Drone"), hModel_(-1), life_(180)
 {
+	transform_.position_ = { 0.0f, 50.0f, 0.0f };
+
 	velocity = { 0.0f, 0.0f, 0.0f };
 	acceleration = { 0.0f, 0.0f, 0.0f };
 	attitude_angles = { 0.0f, 0.0f, 0.0f };
@@ -29,19 +32,20 @@ void Drone::Initialize()
 
 void Drone::Update()
 {
- 
+    float dt = Time::DeltaTime();
+
     XMVECTOR vPos = XMLoadFloat3(&transform_.position_);
-    XMVECTOR vMove = { 0,0,0.1f,0 };
+    XMVECTOR vMove = { 0,0,2.0f,0 };
     XMMATRIX mRotate = XMMatrixRotationY(XMConvertToRadians(transform_.rotate_.y));
     vMove = XMVector3TransformCoord(vMove, mRotate);
    
     if (Input::IsKey(DIK_RIGHT))
     {
-        transform_.rotate_.y += 1.0f;
+        transform_.rotate_.y += 50.0f * dt;
     }
     if (Input::IsKey(DIK_LEFT))
     {
-        transform_.rotate_.y -= 1.0f;
+        transform_.rotate_.y -= 50.0f * dt;
     }
     if (Input::IsKey(DIK_UP))
     {
@@ -55,6 +59,10 @@ void Drone::Update()
 	{
 		vPos += XMVectorSet(0, 0.1f, 0, 0);
 	}
+    if (Input::IsKey(DIK_S))
+    {
+        vPos -= XMVectorSet(0, 0.1f, 0, 0);
+    }
     
     XMStoreFloat3(&transform_.position_, vPos);
     
@@ -64,7 +72,7 @@ void Drone::Update()
 
     RayCastData data;
     data.start = transform_.position_;   //レイの発射位置
-    data.start.y = transform_.position_.y;
+    data.start.y = transform_.position_.y + 5.0f;
 
     data.dir = XMFLOAT3(0, -1, 0);       //レイの方向
     Model::RayCast(hGroundModel, &data); //レイを発射
@@ -75,6 +83,7 @@ void Drone::Update()
     {
         //その分位置を下げる
         //transform_.position_.y = -
+        //transform_.position_.y = -data.dist;
     }
     XMVECTOR vCam = { -10,2.0f,-1.0f,0 };
     vCam = XMVector3TransformCoord(vCam, mRotate);

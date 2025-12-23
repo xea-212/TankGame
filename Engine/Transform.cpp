@@ -44,3 +44,24 @@ XMMATRIX Transform::GetWorldMatrix()
 	return  matScale_ * matRotate_ * matTranslate_;
 }
 
+void Transform::RotateLocal(XMVECTOR axis, float angle)
+{
+	XMMATRIX rot = XMMatrixRotationAxis(axis, angle);
+	matRotate_ = rot * matRotate_;
+}
+
+XMVECTOR Transform::GetForward() const
+{
+	return XMVector3Normalize(matRotate_.r[2]);
+}
+
+XMVECTOR Transform::GetUp() const
+{
+	return XMVector3Normalize(matRotate_.r[1]);
+}
+
+XMVECTOR Transform::GetRight() const
+{
+	return XMVector3Normalize(matRotate_.r[0]);
+}
+

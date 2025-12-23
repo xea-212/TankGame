@@ -129,6 +129,9 @@
     <ClCompile Include="Source\ResultScene.cpp">
       <Filter>ResultScene</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Time.cpp">
+      <Filter>01Engine\ResourceManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -224,6 +227,9 @@
     </ClInclude>
     <ClInclude Include="Source\ResultScene.h">
       <Filter>ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Time.h">
+      <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

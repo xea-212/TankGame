@@ -32,4 +32,10 @@ namespace Camera
 
 	//ビルボード用回転行列を取得
 	XMMATRIX GetBillboardMatrix();
+
+	/*float yaw = 0.0f;
+	float pitch = 0.0f;
+
+	POINT prevMousePos{};
+	bool firstMouse = true;*/
 };

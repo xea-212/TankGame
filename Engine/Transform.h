@@ -39,5 +39,10 @@ public:
 	{
 		return XMFLOAT3(a.x + b.x, a.y + b.y, a.z + b.z);
 	}
+
+	void RotateLocal(XMVECTOR axis, float angle);
+	XMVECTOR GetForward() const;
+	XMVECTOR GetUp() const;
+	XMVECTOR GetRight() const;
 };
 

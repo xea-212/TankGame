@@ -33,27 +33,30 @@ void Drone::Initialize()
 void Drone::Update()
 {
     float dt = Time::DeltaTime();
-
     XMVECTOR vPos = XMLoadFloat3(&transform_.position_);
-    XMVECTOR vMove = { 0,0,2.0f,0 };
-    XMMATRIX mRotate = XMMatrixRotationY(XMConvertToRadians(transform_.rotate_.y));
-    vMove = XMVector3TransformCoord(vMove, mRotate);
+    
    
     if (Input::IsKey(DIK_RIGHT))
     {
-        transform_.rotate_.y += 50.0f * dt;
+        transform_.rotate_.y += 5.0f;
     }
     if (Input::IsKey(DIK_LEFT))
     {
-        transform_.rotate_.y -= 50.0f * dt;
+        transform_.rotate_.y -= 5.0f;
     }
+
+    XMMATRIX mRotate = XMMatrixRotationY(XMConvertToRadians(transform_.rotate_.y));
+
+    XMVECTOR mForward = { 0, 0, 0, 0 };
+    float mSpeed = 500.0f * dt;
+
     if (Input::IsKey(DIK_UP))
     {
-        vPos += vMove;
+        vPos -= mForward * mSpeed;
     }
     if (Input::IsKey(DIK_DOWN))
     {
-        vPos -= vMove;
+        vPos += mForward * mSpeed;
     }
 	if (Input::IsKey(DIK_W))
 	{
@@ -63,7 +66,9 @@ void Drone::Update()
     {
         vPos -= XMVectorSet(0, 0.1f, 0, 0);
     }
-    
+
+	XMVECTOR rotateMove = XMVector3TransformCoord(mForward, mRotate);
+	vPos += rotateMove;
     XMStoreFloat3(&transform_.position_, vPos);
     
 
@@ -85,7 +90,7 @@ void Drone::Update()
         //transform_.position_.y = -
         //transform_.position_.y = -data.dist;
     }
-    XMVECTOR vCam = { -10,2.0f,-1.0f,0 };
+    XMVECTOR vCam = { 0.0,2.0f,-10.0f,0 };
     vCam = XMVector3TransformCoord(vCam, mRotate);
     //XMFLOAT3 camPos;
     //XMStoreFloat3(&camPos, vPos + vCam);
@@ -100,8 +105,9 @@ void Drone::Update()
     Camera::SetTarget(camTarget);*/
 
 
-    XMFLOAT3 camTarget;
-    XMStoreFloat3(&camTarget, vPos + vMove + vCam);
+    XMFLOAT3 camTarget = transform_.position_;
+	//camTarget.y += 1.0f;
+    //XMStoreFloat3(&camTarget, vPos + vMove + vCam);
     Camera::SetTarget(camTarget);
 }
 

@@ -20,6 +20,8 @@ cbuffer global
 	float4		g_vecCameraPosition;// 視点（カメラの位置）
 	float		g_shuniness;		// ハイライトの強さ（テカリ具合）
 	bool		g_isTexture;		// テクスチャ貼ってあるかどうか
+	
+    float4 g_vecLightColor; // 太陽光の色
 
 };
 
@@ -66,91 +68,91 @@ VS_OUT VS(float4 pos : POSITION, float4 Normal : NORMAL, float2 Uv : TEXCOORD)
 //───────────────────────────────────────
 // ピクセルシェーダ
 //───────────────────────────────────────
-//float4 PS(VS_OUT inData) : SV_Target
-//{
-//	//ライトの向き
-//	float4 lightDir = g_vecLightDir;	//グルーバル変数は変更できないので、いったんローカル変数へ
-//	lightDir = normalize(lightDir);	//向きだけが必要なので正規化
-
-//	//法線はピクセルシェーダーに持ってきた時点で補完され長さが変わっている
-//	//正規化しておかないと面の明るさがおかしくなる
-//	inData.normal = normalize(inData.normal);
-
-//	//拡散反射光（ディフューズ）
-//	//法線と光のベクトルの内積が、そこの明るさになる
-//    //float4 shade = saturate(dot(inData.normal, -lightDir));
-//    float4 shade = saturate(dot(inData.normal, -lightDir));
-//    shade = max(shade, 0.3f); // どんなに暗くても 0.5 (50%) の明るさを保証する
-	
-//	shade.a = 1;	//暗いところが透明になるので、強制的にアルファは1
-
-//	float4 diffuse;
-//	//テクスチャ有無
-//	if (g_isTexture == true)
-//	{
-//		//テクスチャの色
-//		diffuse = g_texture.Sample(g_sampler, inData.uv);
-//	}
-//	else
-//	{
-//		//マテリアルの色
-//		diffuse = g_vecDiffuse;
-//	}
-
-//	//環境光（アンビエント）
-//	//これはMaya側で指定し、グローバル変数で受け取ったものをそのまま
-//	float4 ambient = g_vecAmbient;
-
-//	//鏡面反射光（スペキュラー）
-//	float4 speculer = float4(0, 0, 0, 0);	//とりあえずハイライトは無しにしておいて…
-//	if (g_vecSpeculer.a != 0)	//スペキュラーの情報があれば
-//	{
-//		float4 R = reflect(lightDir, inData.normal);			//正反射ベクトル
-//		speculer = pow(saturate(dot(R, inData.eye)), g_shuniness) * g_vecSpeculer;	//ハイライトを求める
-//	}
-
-//	//最終的な色
-//	//return diffuse * shade + diffuse * ambient + speculer;
-//    return diffuse * saturate(shade + 0.5f) + speculer;
-//    //return diffuse; // 影もハイライトも無視して、テクスチャの色を100%出す
-	
-//    //float4 finalColor = diffuse + speculer; // 影(shade)を計算に入れない
-//    //finalColor.a = diffuse.a; // アルファ値は維持
-//    //return finalColor;
-//}
-
 float4 PS(VS_OUT inData) : SV_Target
 {
-   
+	//ライトの向き
+    float4 lightDir = g_vecLightDir; //グルーバル変数は変更できないので、いったんローカル変数へ
+    lightDir = normalize(lightDir); //向きだけが必要なので正規化
 
+	//法線はピクセルシェーダーに持ってきた時点で補完され長さが変わっている
+	//正規化しておかないと面の明るさがおかしくなる
+    inData.normal = normalize(inData.normal);
+
+	//拡散反射光（ディフューズ）
+	//法線と光のベクトルの内積が、そこの明るさになる
+    //float4 shade = saturate(dot(inData.normal, -lightDir));
+    float4 shade = saturate(dot(inData.normal, -lightDir));
+    shade = max(shade, 0.3f); // どんなに暗くても 0.5 (50%) の明るさを保証する
 	
-    float3 N = normalize(inData.normal.xyz);
-    float3 L = normalize(-g_vecLightDir.xyz); // 太陽光
-
-    // 太陽の拡散反射
-    float diffuseRate = saturate(dot(N, L));
-
-    // Half-Lambert（屋外っぽく）
-    diffuseRate = diffuseRate * 0.5f + 0.5f;
+    shade.a = 1; //暗いところが透明になるので、強制的にアルファは1
 
     float4 diffuse;
-    if (g_isTexture)
+	//テクスチャ有無
+    if (g_isTexture == true)
     {
+		//テクスチャの色
         diffuse = g_texture.Sample(g_sampler, inData.uv);
     }
     else
     {
+		//マテリアルの色
         diffuse = g_vecDiffuse;
     }
 
-    // スペキュラ（太陽なので弱め）
-    float4 speculer = float4(0, 0, 0, 0);
-    if (g_vecSpeculer.a > 0)
+	//環境光（アンビエント）
+	//これはMaya側で指定し、グローバル変数で受け取ったものをそのまま
+    float4 ambient = g_vecAmbient;
+
+	//鏡面反射光（スペキュラー）
+    float4 speculer = float4(0, 0, 0, 0); //とりあえずハイライトは無しにしておいて…
+    if (g_vecSpeculer.a != 0)	//スペキュラーの情報があれば
     {
-        float3 V = normalize(inData.eye.xyz);
-        float3 R = reflect(-L, N);
-        speculer = pow(saturate(dot(R, V)), g_shuniness) * g_vecSpeculer;
+        float4 R = reflect(lightDir, inData.normal); //正反射ベクトル
+        speculer = pow(saturate(dot(R, inData.eye)), g_shuniness) * g_vecSpeculer; //ハイライトを求める
     }
 
-    return diffuse * diffuseRate + speculer;
+	//最終的な色
+	//return diffuse * shade + diffuse * ambient + speculer;
+    return diffuse * saturate(shade + 0.5f) + speculer;
+    //return diffuse; // 影もハイライトも無視して、テクスチャの色を100%出す
+	
+    //float4 finalColor = diffuse + speculer; // 影(shade)を計算に入れない
+    //finalColor.a = diffuse.a; // アルファ値は維持
+    //return finalColor;
 }
+
+//float4 PS(VS_OUT inData) : SV_Target
+//{
+   
+
+	
+//    float3 N = normalize(inData.normal.xyz);
+//    float3 L = normalize(-g_vecLightDir.xyz); // 太陽光
+
+//    // 太陽の拡散反射
+//    float diffuseRate = saturate(dot(N, L));
+
+//    // Half-Lambert（屋外っぽく）
+//    diffuseRate = diffuseRate * 0.5f + 0.5f;
+
+//    float4 diffuse;
+//    if (g_isTexture)
+//    {
+//        diffuse = g_texture.Sample(g_sampler, inData.uv);
+//    }
+//    else
+//    {
+//        diffuse = g_vecDiffuse;
+//    }
+
+//    // スペキュラ（太陽なので弱め）
+//    float4 speculer = float4(0, 0, 0, 0);
+//    if (g_vecSpeculer.a > 0)
+//    {
+//        float3 V = normalize(inData.eye.xyz);
+//        float3 R = reflect(-L, N);
+//        speculer = pow(saturate(dot(R, V)), g_shuniness) * g_vecSpeculer;
+//    }
+
+//    return diffuse * diffuseRate + speculer;
+//}

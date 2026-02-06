@@ -90,25 +90,27 @@ void Drone::Update()
         //transform_.position_.y = -
         //transform_.position_.y = -data.dist;
     }
-    XMVECTOR vCam = { 0.0,2.0f,-10.0f,0 };
+    // --- カメラ位置（後ろ） ---
+    XMVECTOR vCam = XMVectorSet(0.0f, 5.0f, 1.0f, 0);
     vCam = XMVector3TransformCoord(vCam, mRotate);
-    //XMFLOAT3 camPos;
-    //XMStoreFloat3(&camPos, vPos + vCam);
-    //Camera::SetPosition(camPos);
 
     XMFLOAT3 camPos;
     XMStoreFloat3(&camPos, vPos + vCam);
     Camera::SetPosition(camPos);
 
-   /* XMFLOAT3 camTarget = transform_.position_;
-    camTarget.y += 2.0f;
-    Camera::SetTarget(camTarget);*/
 
+    // --- ドローンの前方向を見る ---
+    XMVECTOR forward = XMVectorSet(0, 0, 1, 0);
+    forward = XMVector3TransformCoord(forward, mRotate);
+    forward = XMVector3Normalize(forward);
 
-    XMFLOAT3 camTarget = transform_.position_;
-	//camTarget.y += 1.0f;
-    //XMStoreFloat3(&camTarget, vPos + vMove + vCam);
+    // ターゲットは前方10m
+    XMVECTOR targetPos = vPos + forward * 10.0f;
+
+    XMFLOAT3 camTarget;
+    XMStoreFloat3(&camTarget, targetPos);
     Camera::SetTarget(camTarget);
+
 }
 
 void Drone::Draw()

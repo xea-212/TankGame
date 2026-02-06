@@ -3,9 +3,12 @@
 #include "../Engine/Input.h"
 #include "../Engine/SphereCollider.h"
 
+#include "Sky.h"
+
 Ground::Ground(GameObject* parent)
     :GameObject(parent, "Ground"), hModel_(-1), life_(180)
 {
+	Instantiate<Sky>(parent);
 }
 
 Ground::~Ground()
@@ -16,11 +19,10 @@ Ground::~Ground()
 void Ground::Initialize()
 {
     //モデルデータのロード
-    hModel_ = Model::Load("Models/Stage00.fbx");
+    hModel_ = Model::Load("Models/Ground00.fbx");
     assert(hModel_ >= 0);
-
-    SphereCollider* collision = new SphereCollider(XMFLOAT3(0, 0, 0), 0.3f);
-    AddCollider(collision);
+    
+	transform_.scale_ = XMFLOAT3(2.0f, 1.0f, 2.0f);
 }
 
 void Ground::Update()

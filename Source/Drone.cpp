@@ -52,11 +52,11 @@ void Drone::Update()
 
     if (Input::IsKey(DIK_UP))
     {
-        vPos -= mForward * mSpeed;
+        transform_.rotate_.x += 5.0f;
     }
     if (Input::IsKey(DIK_DOWN))
     {
-        vPos += mForward * mSpeed;
+        transform_.rotate_.x -= 5.0f;
     }
 	if (Input::IsKey(DIK_W))
 	{
@@ -90,27 +90,25 @@ void Drone::Update()
         //transform_.position_.y = -
         //transform_.position_.y = -data.dist;
     }
-    // --- カメラ位置（後ろ） ---
-    XMVECTOR vCam = XMVectorSet(0.0f, 5.0f, 1.0f, 0);
+    XMVECTOR vCam = { 0.0,5.0f,-10.0f,0 };
     vCam = XMVector3TransformCoord(vCam, mRotate);
+    //XMFLOAT3 camPos;
+    //XMStoreFloat3(&camPos, vPos + vCam);
+    //Camera::SetPosition(camPos);
 
     XMFLOAT3 camPos;
     XMStoreFloat3(&camPos, vPos + vCam);
     Camera::SetPosition(camPos);
 
+   /* XMFLOAT3 camTarget = transform_.position_;
+    camTarget.y += 2.0f;
+    Camera::SetTarget(camTarget);*/
 
-    // --- ドローンの前方向を見る ---
-    XMVECTOR forward = XMVectorSet(0, 0, 1, 0);
-    forward = XMVector3TransformCoord(forward, mRotate);
-    forward = XMVector3Normalize(forward);
 
-    // ターゲットは前方10m
-    XMVECTOR targetPos = vPos + forward * 10.0f;
-
-    XMFLOAT3 camTarget;
-    XMStoreFloat3(&camTarget, targetPos);
+    XMFLOAT3 camTarget = transform_.position_;
+	//camTarget.y += 1.0f;
+    //XMStoreFloat3(&camTarget, vPos + vMove + vCam);
     Camera::SetTarget(camTarget);
-
 }
 
 void Drone::Draw()

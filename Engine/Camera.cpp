@@ -18,7 +18,7 @@ void Camera::Initialize()
 	float fov = XMConvertToRadians(100.0f);	//視野角
 
 	//プロジェクション行列
-	_proj = XMMatrixPerspectiveFovLH(fov, (FLOAT)Direct3D::screenWidth_ / (FLOAT)Direct3D::screenHeight_, 0.1f, 20000.0f);
+	_proj = XMMatrixPerspectiveFovLH(fov, (FLOAT)Direct3D::screenWidth_ / (FLOAT)Direct3D::screenHeight_, 0.1f, 50000.0f);
 	/*GetCursorPos(&prevMousePos);
 	ScreenToClient(hWnd, &prevMousePos);*/
 }

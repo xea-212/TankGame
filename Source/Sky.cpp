@@ -15,6 +15,8 @@ void Sky::Initialize()
 {
 	hModel_ = Model::Load("Models/Sky.fbx");
 	assert(hModel_ >= 0);
+
+	transform_.scale_ = XMFLOAT3(50.0f, 50.0f, 50.0f);
 }
 
 void Sky::Update()

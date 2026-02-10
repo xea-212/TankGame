@@ -1,5 +1,5 @@
 #include "TitleScene.h"
-#include "Enemy.h"
+#include "TitleModel.h"
 #include "../Engine/Input.h"
 #include "../Engine/SceneManager.h"
 
@@ -12,7 +12,7 @@ TitleScene::TitleScene(GameObject * parent)
 //‰Šú‰»
 void TitleScene::Initialize()
 {
-	Instantiate<Enemy>(this);
+	Instantiate<TitleModel>(this);
 }
 
 //XV

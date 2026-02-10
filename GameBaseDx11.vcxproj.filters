@@ -30,7 +30,7 @@
     <Filter Include="TitleScene">
       <UniqueIdentifier>{f38bad78-aaf4-46a5-a557-f0a66f07258e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ResultScene">
+    <Filter Include="PlayScene\ResultScene">
       <UniqueIdentifier>{f6e02e41-1b0a-446f-b0d6-9f6bafd595f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -107,9 +107,6 @@
     <ClCompile Include="Source\TitleScene.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Enemy.cpp">
-      <Filter>TitleScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Bullet.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -127,13 +124,23 @@
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\ResultScene.cpp">
-      <Filter>ResultScene</Filter>
+      <Filter>PlayScene\ResultScene</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Time.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="Source\Sky.cpp">
       <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Color.cpp" />
+    <ClCompile Include="Source\Light.cpp">
+      <Filter>01Engine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Enemy.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TitleModel.cpp">
+      <Filter>TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +216,6 @@
     <ClInclude Include="Source\TitleScene.h">
       <Filter>TitleScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Enemy.h">
-      <Filter>TitleScene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Bullet.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
@@ -229,13 +233,23 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\ResultScene.h">
-      <Filter>ResultScene</Filter>
+      <Filter>PlayScene\ResultScene</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Time.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="Source\Sky.h">
       <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Light.h">
+      <Filter>01Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Color.h" />
+    <ClInclude Include="Source\Enemy.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TitleModel.h">
+      <Filter>TitleScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

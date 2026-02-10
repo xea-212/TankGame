@@ -93,6 +93,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -118,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -150,13 +152,16 @@
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Transform.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
+    <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\Ground.cpp" />
+    <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\ResultScene.cpp" />
     <ClCompile Include="Source\Drone.cpp" />
     <ClCompile Include="Source\Sky.cpp" />
     <ClCompile Include="Source\TankHead.cpp" />
+    <ClCompile Include="Source\TitleModel.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\UI.cpp" />
   </ItemGroup>
@@ -186,13 +191,16 @@
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Transform.h" />
     <ClInclude Include="Source\Bullet.h" />
+    <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\Ground.h" />
+    <ClInclude Include="Source\Light.h" />
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\ResultScene.h" />
     <ClInclude Include="Source\Drone.h" />
     <ClInclude Include="Source\Sky.h" />
     <ClInclude Include="Source\TankHead.h" />
+    <ClInclude Include="Source\TitleModel.h" />
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\UI.h" />
   </ItemGroup>

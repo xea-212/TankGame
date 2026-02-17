@@ -2,6 +2,7 @@
 #include "TitleModel.h"
 #include "../Engine/Input.h"
 #include "../Engine/SceneManager.h"
+#include "Ground.h"
 
 //コンストラクタ
 TitleScene::TitleScene(GameObject * parent)
@@ -13,6 +14,7 @@ TitleScene::TitleScene(GameObject * parent)
 void TitleScene::Initialize()
 {
 	Instantiate<TitleModel>(this);
+	Instantiate<Ground>(this);
 }
 
 //更新

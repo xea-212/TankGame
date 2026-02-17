@@ -151,6 +151,7 @@
     <ClCompile Include="Engine\Text.cpp" />
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Transform.cpp" />
+    <ClCompile Include="Source\BackGround.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Engine\Text.h" />
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Transform.h" />
+    <ClInclude Include="Source\BackGround.h" />
     <ClInclude Include="Source\Bullet.h" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Enemy.h" />

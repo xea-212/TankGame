@@ -30,7 +30,7 @@
     <Filter Include="TitleScene">
       <UniqueIdentifier>{f38bad78-aaf4-46a5-a557-f0a66f07258e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayScene\ResultScene">
+    <Filter Include="ResultScene">
       <UniqueIdentifier>{f6e02e41-1b0a-446f-b0d6-9f6bafd595f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -124,7 +124,7 @@
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\ResultScene.cpp">
-      <Filter>PlayScene\ResultScene</Filter>
+      <Filter>ResultScene</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Time.cpp">
       <Filter>01Engine\ResourceManager</Filter>
@@ -140,6 +140,9 @@
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\TitleModel.cpp">
+      <Filter>TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BackGround.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -233,7 +236,7 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\ResultScene.h">
-      <Filter>PlayScene\ResultScene</Filter>
+      <Filter>ResultScene</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Time.h">
       <Filter>01Engine\ResourceManager</Filter>
@@ -249,6 +252,9 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\TitleModel.h">
+      <Filter>TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BackGround.h">
       <Filter>TitleScene</Filter>
     </ClInclude>
   </ItemGroup>

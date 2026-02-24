@@ -118,6 +118,11 @@ int CsvReader::GetValue(DWORD x, DWORD y)
 	return atoi(GetString(x, y).c_str());
 }
 
+float CsvReader::GetFloat(DWORD x, DWORD y)
+{
+	return stof(data_[y][x]);
+}
+
 //ƒtƒ@ƒCƒ‹‚Ì—ñ”‚ğæ“¾
 size_t CsvReader::GetWidth()
 {

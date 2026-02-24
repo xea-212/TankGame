@@ -145,6 +145,9 @@
     <ClCompile Include="Source\BackGround.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Stage.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -256,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="Source\BackGround.h">
       <Filter>TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stage.h">
+      <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

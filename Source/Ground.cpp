@@ -2,6 +2,7 @@
 #include "../Engine/Model.h"
 #include "../Engine/Input.h"
 #include "../Engine/SphereCollider.h"
+#include "Stage.h"
 
 #include "Sky.h"
 
@@ -9,6 +10,7 @@ Ground::Ground(GameObject* parent)
     :GameObject(parent, "Ground"), hModel_(-1), life_(180)
 {
 	Instantiate<Sky>(parent);
+	Instantiate<Stage>(parent);
 }
 
 Ground::~Ground()

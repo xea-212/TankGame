@@ -161,6 +161,7 @@
     <ClCompile Include="Source\ResultScene.cpp" />
     <ClCompile Include="Source\Drone.cpp" />
     <ClCompile Include="Source\Sky.cpp" />
+    <ClCompile Include="Source\Stage.cpp" />
     <ClCompile Include="Source\TankHead.cpp" />
     <ClCompile Include="Source\TitleModel.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="Source\ResultScene.h" />
     <ClInclude Include="Source\Drone.h" />
     <ClInclude Include="Source\Sky.h" />
+    <ClInclude Include="Source\Stage.h" />
     <ClInclude Include="Source\TankHead.h" />
     <ClInclude Include="Source\TitleModel.h" />
     <ClInclude Include="Source\TitleScene.h" />

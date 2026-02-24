@@ -25,7 +25,5 @@ public:
     //ŠJ•ú
     void Release() override;
 
-	void CreateStage();
-
     int GetModelHandle() { return hModel_; }
 };

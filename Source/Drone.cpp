@@ -11,6 +11,7 @@ Drone::Drone(GameObject* parent)
     :GameObject(parent, "Drone"), hModel_(-1), life_(180)
 {
 	transform_.position_ = { 0.0f, 50.0f, 0.0f };
+	
 
 	velocity = { 0.0f, 0.0f, 0.0f };
 	acceleration = { 0.0f, 0.0f, 0.0f };

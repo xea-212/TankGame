@@ -63,7 +63,7 @@ bool Stage::Load(const char* csvFile)
 
 	
 
-	for (int y = 0; y < height; y++)
+	for (int y = 1; y < height; y++)
 	{
 		if (width < MAX_NUM)
 		{

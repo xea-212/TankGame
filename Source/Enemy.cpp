@@ -23,6 +23,7 @@ void Enemy::Initialize()
 	Model::SetAnimFrame(hModel_, 100, 160, 10.0f);
 }
 
+
 void Enemy::Update()
 {
 	XMVECTOR vPos = XMLoadFloat3(&transform_.position_);

@@ -3,6 +3,7 @@
 #include <dInput.h>
 #include <DirectXMath.h>
 #include "XInput.h"
+#include "Vector3.h"
 
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dInput8.lib")
@@ -61,6 +62,7 @@ namespace Input
 	//マウスカーソルの位置を取得
 	//戻値：マウスカーソルの位置
 	XMFLOAT3 GetMousePosition();
+	Vector3 GetMousePositionV3();
 
 	//マウスカーソルの位置をセット
 	//引数：マウスカーソルの位置

@@ -63,13 +63,16 @@ namespace Input
 		memcpy(&prevMouseState_, &mouseState_, sizeof(mouseState_));
 		pMouseDevice_->GetDeviceState(sizeof(mouseState_), &mouseState_);
 
+		//マウスカーソル座標
+		GetCursorPos(&mousePos_);
+		ScreenToClient(hWnd_, &mousePos_);
+
 		//コントローラー
 		for (int i = 0; i < MAX_PAD_NUM; i++)
 		{
 			memcpy(&prevControllerState_[i], &controllerState_[i], sizeof(controllerState_[i]));
 			XInputGetState(i, &controllerState_[i]);
 		}
-
 	}
 
 
@@ -162,6 +165,11 @@ namespace Input
 	{
 		XMFLOAT3 result = XMFLOAT3((float)mousePos_.x, (float)mousePos_.y, 0);
 		return result;
+	}
+
+	Vector3 GetMousePositionV3()
+	{
+		return Vector3( (float)mousePos_.x, (float)mousePos_.y, 0.0f );
 	}
 
 	//マウスカーソルの位置をセット
